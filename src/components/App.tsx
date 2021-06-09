@@ -1,15 +1,21 @@
 import React from 'react'
 
+import { AppNav } from '@/components/navigation/AppNav'
+
 export default () => {
   return (
-    <h1>
-      <a
-        href="https://github.com/JaeYeopHan/cra-template-unicorn"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        cra-template-unicorn
-      </a>
-    </h1>
+    <div style={styles.fill}>
+      <AppNav />
+    </div>
   )
+}
+
+const styles: any = {}
+
+styles.fill = {
+  position: 'absolute',
+  left: 0,
+  right: 0,
+  top: 0,
+  bottom: 0,
 }

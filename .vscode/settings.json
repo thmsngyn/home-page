@@ -5,6 +5,10 @@
   "eslint.options": {
     "extensions": [".html", ".ts", ".js", ".tsx"]
   },
+  "typescript.format.enable": false,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "files.autoSaveDelay": 500,
   "eslint.packageManager": "yarn",
   "typescript.tsdk": "node_modules/typescript/lib",
