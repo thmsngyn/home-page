@@ -1,3 +1,5 @@
+import './App.scss'
+
 import React from 'react'
 
 import { AppNav } from '@/components/navigation/AppNav'

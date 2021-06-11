@@ -1,7 +1,10 @@
 import React from 'react'
-import { Link, Route, Switch } from 'react-router-dom'
+import { Link, Route, Switch, useLocation } from 'react-router-dom'
+
+import { SplashIntro } from '@/components/pages'
 
 enum Routes {
+  SplashIntro = 'SplashIntro',
   Home = 'Home',
   About = 'About',
 }
@@ -9,8 +12,12 @@ enum Routes {
 type AppRoute = { path: string; component: any }
 
 const router: Record<Routes, AppRoute> = {
-  [Routes.Home]: {
+  [Routes.SplashIntro]: {
     path: '/',
+    component: SplashIntro,
+  },
+  [Routes.Home]: {
+    path: '/home',
     component: <div>home hello</div>,
   },
   [Routes.About]: {
@@ -20,17 +27,26 @@ const router: Record<Routes, AppRoute> = {
 }
 
 export const AppNav = () => {
+  const location = useLocation()
+  console.log({ location })
+
   return (
     <div>
-      <ul style={styles.nav}>
-        {Object.keys(router).map((key) => (
-          <Link to={router[key as Routes].path}>{key}</Link>
-        ))}
-      </ul>
+      {location.pathname !== router[Routes.SplashIntro].path && (
+        <ul style={styles.nav}>
+          {Object.keys(router)
+            .filter((route) => route !== Routes.SplashIntro)
+            .map((key, i) => (
+              <Link key={i} to={router[key as Routes].path}>
+                {key}
+              </Link>
+            ))}
+        </ul>
+      )}
       <div style={styles.body}>
         <Switch>
-          {Object.values(router).map((route) => (
-            <Route exact path={route.path}>
+          {Object.values(router).map((route, i) => (
+            <Route key={i} exact path={route.path}>
               {route.component}
             </Route>
           ))}
