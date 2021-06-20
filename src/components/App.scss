@@ -1,1 +1,10 @@
-@import '~antd/dist/antd.css';
+@import '../assets/fonts/fonts.css';
+
+body {
+  margin: 0;
+  font-family: 'Cereal-Book', sans-serif;
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  text-align: center;
+}

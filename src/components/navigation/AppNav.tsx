@@ -1,55 +1,70 @@
 import React from 'react'
 import { Link, Route, Switch, useLocation } from 'react-router-dom'
 
-import { SplashIntro } from '@/components/pages'
+import { FestivalPosters, SplashIntro } from '@/components/pages'
 
-enum Routes {
-  SplashIntro = 'SplashIntro',
-  Home = 'Home',
-  About = 'About',
+export enum Routes {
+  SplashIntro = '/',
+  Home = '/home',
+  About = '/about',
+  Festivals = '/festivals',
+  Blog = '/blog',
 }
 
-type AppRoute = { path: string; component: any }
+type AppRoute = { header: string; Component?: any; redirect?: string }
 
 const router: Record<Routes, AppRoute> = {
   [Routes.SplashIntro]: {
-    path: '/',
-    component: SplashIntro,
+    Component: SplashIntro,
+    header: '',
   },
   [Routes.Home]: {
-    path: '/home',
-    component: <div>home hello</div>,
+    Component: () => <div>home hello</div>,
+    header: 'Home',
   },
   [Routes.About]: {
-    path: '/about',
-    component: <div>about hello</div>,
+    Component: () => <div>about hello</div>,
+    header: 'About',
+  },
+  [Routes.Festivals]: {
+    Component: FestivalPosters,
+    header: 'Festivals',
+  },
+  [Routes.Blog]: {
+    Component: () => {
+      window.location.replace('https://blog.thmsngyn.com/')
+
+      return null
+    },
+    header: 'Blog',
   },
 }
 
 export const AppNav = () => {
   const location = useLocation()
-  console.log({ location })
 
   return (
     <div>
-      {location.pathname !== router[Routes.SplashIntro].path && (
+      {location.pathname !== Routes.SplashIntro && (
         <ul style={styles.nav}>
           {Object.keys(router)
             .filter((route) => route !== Routes.SplashIntro)
             .map((key, i) => (
-              <Link key={i} to={router[key as Routes].path}>
-                {key}
+              <Link key={i} to={key}>
+                {router[key as Routes].header}
               </Link>
             ))}
         </ul>
       )}
       <div style={styles.body}>
         <Switch>
-          {Object.values(router).map((route, i) => (
-            <Route key={i} exact path={route.path}>
-              {route.component}
-            </Route>
-          ))}
+          {Object.keys(router).map((route, i) => {
+            const { Component } = router[route as Routes]
+
+            return (
+              <Route key={i} exact path={route} component={Component}></Route>
+            )
+          })}
         </Switch>
       </div>
     </div>

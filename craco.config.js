@@ -1,7 +1,7 @@
 const path = require('path')
-const resolve = arg => path.resolve(__dirname, arg)
+const resolve = (arg) => path.resolve(__dirname, arg)
 
-module.exports = function() {
+module.exports = function () {
   return {
     babel: {
       plugins: [
@@ -23,6 +23,11 @@ module.exports = function() {
         moduleNameMapper: {
           '^@/(.*)$': '<rootDir>/src/$1',
         },
+      },
+    },
+    style: {
+      postcss: {
+        plugins: [require('tailwindcss'), require('autoprefixer')],
       },
     },
   }

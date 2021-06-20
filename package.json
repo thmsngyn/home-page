@@ -17,11 +17,13 @@
     "@types/react-redux": "^7.1.16",
     "@types/react-router": "^5.1.15",
     "@types/react-router-dom": "^5.1.7",
+    "@windmill/react-ui": "0.5.1",
     "antd": "^4.16.2",
     "babel-plugin-emotion": "^10.2.2",
     "eslint-plugin-simple-import-sort": "^5.0.3",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
+    "react-grid-gallery": "^0.5.5",
     "react-redux": "^7.2.4",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
@@ -29,10 +31,18 @@
     "typescript": "~3.8.3"
   },
   "devDependencies": {
+    "autoprefixer": "9.8.0",
+    "cross-env": "7.0.2",
     "node-sass": "4.14.1",
-    "sass-loader": "^12.1.0"
+    "postcss": "^7",
+    "postcss-cli": "7.1.1",
+    "sass-loader": "^12.1.0",
+    "tailwindcss": "1.4.6"
   },
   "scripts": {
+    "tailwind:dev": "tailwindcss build src/assets/css/tailwind.css -o src/assets/css/tailwind.output.css",
+    "tailwind:build": "cross-env NODE_ENV=production postcss src/assets/css/tailwind.css -o src/assets/css/tailwind.output.css",
+    "prestart": "yarn run tailwind:dev",
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",

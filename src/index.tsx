@@ -1,3 +1,6 @@
+import '@/assets/css/tailwind.output.css'
+
+import { Windmill } from '@windmill/react-ui'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
@@ -10,7 +13,9 @@ import history from '@/utils/history'
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-      <App />
+      <Windmill>
+        <App />
+      </Windmill>
     </Router>
   </Provider>,
   document.getElementById('root'),

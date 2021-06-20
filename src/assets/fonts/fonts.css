@@ -1,0 +1,10 @@
+@font-face {
+  font-family: 'Cereal-Book';
+  src: url('./Cereal-Book.ttf') format('truetype');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Cereal-Medium';
+  src: url('./Cereal-Medium.ttf') format('truetype');
+  font-display: swap;
+}
